@@ -1,35 +1,19 @@
+
 <div class="container">
   <div class="row">
-    <div class="col-lg-4 col-md-6 col-sm-6 col-6">
+    <div class="col-lg-4 col-md-6 col-sm-6 col-6" *ngFor="let e of restaurant;" >
       <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="https://via.placeholder.com/150" alt="Card image cap">
+        <img class="card-img-top" *ngIf="!e.url_image || e.url_image === ''" src="https://via.placeholder.com/150" alt="Card image cap">
+        <img class="card-img-top" *ngElse src="{{e.url_image}}" alt="Card image cap">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-      <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="https://via.placeholder.com/150" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4 col-md-6 col-sm-6 col-6">
-      <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="https://via.placeholder.com/150" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <h5 class="card-title">{{ e.nom }}</h5>
+          <p class="card-text">{{e.description}}</p>
+          <a href="#" class="btn btn-primary" routerLink="/restaurant/{{ e._id }}" routerLinkActive="active">Voir les plats</a>
         </div>
       </div>
     </div>
   </div>
 </div>
+<router-outlet></router-outlet>
+
 

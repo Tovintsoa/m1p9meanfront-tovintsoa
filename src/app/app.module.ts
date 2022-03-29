@@ -5,15 +5,23 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail.component';
+import {RouterModule, Routes} from "@angular/router";
+const routes: Routes = [
+  { path: '', redirectTo: 'restaurant', pathMatch: 'full' },
+  { path: 'restaurant/:id', component: RestaurantDetailComponent },
 
+];
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    RestaurantDetailComponent
   ],
   imports: [
+    RouterModule.forRoot(routes),
     BrowserModule,
     HttpClientModule,
   ],
