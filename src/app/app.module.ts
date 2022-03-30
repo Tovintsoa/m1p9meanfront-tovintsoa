@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
   { path: 'index', component:DashboardComponent},
   { path: 'restaurant/:id', component: RestaurantDetailComponent },
+  { path: 'login', component: LoginComponent },
 
 ];
 @NgModule({
