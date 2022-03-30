@@ -10,11 +10,14 @@ import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail
 import {RouterModule, Routes} from "@angular/router";
 import { LoginComponent } from './login/login.component';
 import { authInterceptorProviders  } from './_helpers/auth.interceptor';
+import { InscriptionComponent } from './inscription/inscription.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
   { path: 'index', component:DashboardComponent},
   { path: 'restaurant/:id', component: RestaurantDetailComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'inscription', component: InscriptionComponent },
 
 ];
 @NgModule({
@@ -24,13 +27,15 @@ const routes: Routes = [
     HeaderComponent,
     FooterComponent,
     RestaurantDetailComponent,
-    LoginComponent
+    LoginComponent,
+    InscriptionComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    NgxSpinnerModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

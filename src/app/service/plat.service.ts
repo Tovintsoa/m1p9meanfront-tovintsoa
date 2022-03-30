@@ -14,4 +14,7 @@ export class PlatService {
   getAllById(idRestaurant:string): Observable<Plat[]> {
     return this.http.get<Restaurant[]>(baseUrl + "plat/"+idRestaurant);
   }
+  getRestaurant(idRestaurant:string):Observable<Restaurant>{
+    return this.http.get<Restaurant>(baseUrl + "restaurant/"+idRestaurant);
+  }
 }

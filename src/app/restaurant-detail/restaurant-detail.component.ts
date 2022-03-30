@@ -11,15 +11,26 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class RestaurantDetailComponent implements OnInit {
   plat!: Plat[];
+  restaurant: Restaurant = new Restaurant();
   constructor(private platService : PlatService,  private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.getListePlat(this.route.snapshot.params["id"]);
+    this.getRestaurant(this.route.snapshot.params["id"]);
   }
   getListePlat(idRestaurant:string){
     this.platService.getAllById(idRestaurant).subscribe({
       next:(data) =>{
         this.plat = data;
+      },
+      error:(e) => console.error(e)
+    })
+  }
+  getRestaurant(idRestaurant:string){
+    this.platService.getRestaurant(idRestaurant).subscribe({
+      next:(data) =>{
+
+        this.restaurant = data;
       },
       error:(e) => console.error(e)
     })

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  typeSelected: string;
+
+  constructor(private spinnerService: NgxSpinnerService) {
+    this.typeSelected = 'ball-fussion';
+  }
+
 
 }
