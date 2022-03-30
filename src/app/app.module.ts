@@ -8,7 +8,8 @@ import { FooterComponent } from './footer/footer.component';
 import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail.component';
 import {RouterModule, Routes} from "@angular/router";
 const routes: Routes = [
-  { path: '', redirectTo: 'restaurant', pathMatch: 'full' },
+  { path: '', redirectTo: '/index', pathMatch: 'full' },
+  { path: 'index', component:DashboardComponent},
   { path: 'restaurant/:id', component: RestaurantDetailComponent },
 
 ];
