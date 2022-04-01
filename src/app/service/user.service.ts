@@ -12,6 +12,7 @@ export class UserService {
     return this.http.get(API_URL + 'all', { responseType: 'text' });
   }
   create(data: any): Observable<any> {
+
     return this.http.post(API_URL+"userAdd", data);
   }
 }
