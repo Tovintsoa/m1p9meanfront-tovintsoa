@@ -1,9 +1,14 @@
+/**
+ * User et Livreur à la fois
+ */
 export class Restaurant {
   _id?: any;
   nom?: string;
   prenom?: string;
-  email?: boolean;
+  email?: string;
   role?: string;
   description?: string;
   url_image?:string;
+  motdepasse?:string;
+
 }

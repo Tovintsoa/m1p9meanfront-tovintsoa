@@ -1,4 +1,4 @@
-<div class="container my-4">
+<div class="container my-5">
   <div class="row">
     <div class="col-2"></div>
     <div class="col-8">
@@ -6,12 +6,15 @@
         <div class="card-body " style="">
           <h4 class="card-title mt-3 text-center">Créer un compte</h4>
           <p class="text-center">Get started with your free account</p>
-          <form>
+          <div *ngIf="!submitted">
             <div class="form-group input-group">
-              <input name="" class="form-control" placeholder="Nom et prénom" type="text">
+              <input name="" class="form-control" placeholder="Nom" type="text" [(ngModel)]="user.nom">
             </div> <!-- form-group// -->
             <div class="form-group input-group">
-              <input name="" class="form-control" placeholder="Email" type="email">
+              <input name="" class="form-control" placeholder="Prénom" type="text" [(ngModel)]="user.prenom">
+            </div>
+            <div class="form-group input-group">
+              <input name="" class="form-control" placeholder="Email" type="email" [(ngModel)]="user.email">
             </div> <!-- form-group// -->
             <div class="form-group input-group">
               <select class="custom-select" style="max-width: 120px;">
@@ -20,23 +23,27 @@
               <input name="" class="form-control" placeholder="Phone number" type="text">
             </div> <!-- form-group// -->
             <div class="form-group input-group">
-              <select class="form-control">
-                <option value="1">Client</option>
-                <option value="2">Restaurant</option>
-                <option value="3">Livreur</option>
+              <select class="form-control" [(ngModel)]="user.role">
+                <option value="ROLE_USER">Client</option>
+                <option value="ROLE_RESTAURANT">Restaurant</option>
+                <option value="ROLE_LIVREUR">Livreur</option>
               </select>
             </div> <!-- form-group end.// -->
             <div class="form-group input-group">
-              <input class="form-control" placeholder="Votre mot de passe" type="password">
+              <input class="form-control" placeholder="Votre mot de passe" type="password" [(ngModel)]="user.motdepasse">
             </div> <!-- form-group// -->
             <div class="form-group input-group">
               <input class="form-control" placeholder="Retaper le mot de passe" type="password">
             </div> <!-- form-group// -->
             <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-block"> Créer un compte  </button>
+              <button type="submit" class="btn btn-primary btn-block" (click)="saveUser()"> Créer un compte  </button>
             </div> <!-- form-group// -->
             <p class="text-center">Vous avez un compte ? <a routerLink="/login">Connectez-vous</a> </p>
-          </form>
+          </div>
+          <div *ngIf="submitted" class="text-center">
+            <p>Votre inscription a bien été enregistré et un mail a été envoyé à l'adresse <b>{{ user.email}}</b></p>
+            <a class="" routerLink="/login">Retour</a>
+          </div>
         </div>
       </div> <!-- card.// -->
     </div>
