@@ -6,40 +6,61 @@
         <div class="card-body " style="">
           <h4 class="card-title mt-3 text-center">Créer un compte</h4>
           <p class="text-center">Get started with your free account</p>
-          <div *ngIf="!submitted">
+
+          <form (ngSubmit)="saveUser()" [formGroup]="form" *ngIf="!submitted || form.invalid" >
             <div class="form-group input-group">
-              <input name="" class="form-control" placeholder="Nom" type="text" [(ngModel)]="user.nom">
-            </div> <!-- form-group// -->
-            <div class="form-group input-group">
-              <input name="" class="form-control" placeholder="Prénom" type="text" [(ngModel)]="user.prenom">
+              <input formControlName="nom" class="form-control" (ngModelChange)=onReset() placeholder="Nom" type="text" [(ngModel)]="user.nom" [ngClass]="{ 'is-invalid': submitted && f['nom'].errors }">
+            </div>
+
+            <div *ngIf="submitted && f['nom'].errors" class="" >
+              <div *ngIf="f['nom'].errors['required']">Nom is required</div>
             </div>
             <div class="form-group input-group">
-              <input name="" class="form-control" placeholder="Email" type="email" [(ngModel)]="user.email">
-            </div> <!-- form-group// -->
+              <input formControlName="prenom" (ngModelChange)=onReset() class="form-control" placeholder="Prénom" type="text" [(ngModel)]="user.prenom"   [ngClass]="{ 'is-invalid': submitted && f['prenom'].errors }">
+            </div>
+            <div *ngIf="submitted && f['prenom'].errors" class="">
+              <div *ngIf="f['prenom'].errors['required']">prenom is required</div>
+            </div>
             <div class="form-group input-group">
-              <select class="custom-select" style="max-width: 120px;">
-                <option selected="">+261</option>
-              </select>
-              <input name="" class="form-control" placeholder="Phone number" type="text">
-            </div> <!-- form-group// -->
+              <input formControlName="email" (ngModelChange)=onReset() class="form-control" placeholder="Email" type="email" [(ngModel)]="user.email" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
+            </div>
+            <div *ngIf="submitted && f['email'].errors" class="">
+              <div *ngIf="f['email'].errors['required']">Email is required</div>
+              <div *ngIf="f['email'].errors['email']">Email is invalid</div>
+            </div>
             <div class="form-group input-group">
-              <select class="form-control" [(ngModel)]="user.role">
+              <select formControlName="role" class="form-control" (ngModelChange)=onReset() [(ngModel)]="user.role">
                 <option value="ROLE_USER">Client</option>
                 <option value="ROLE_RESTAURANT">Restaurant</option>
                 <option value="ROLE_LIVREUR">Livreur</option>
               </select>
             </div> <!-- form-group end.// -->
             <div class="form-group input-group">
-              <input class="form-control" placeholder="Votre mot de passe" type="password" [(ngModel)]="user.motdepasse">
-            </div> <!-- form-group// -->
+              <input formControlName="motdepasse"  (ngModelChange)=onReset() class="form-control"  placeholder="Votre mot de passe" type="password" [(ngModel)]="user.motdepasse" [ngClass]="{ 'is-invalid': submitted && f['motdepasse'].errors }">
+            </div>
+            <div *ngIf="submitted && f['motdepasse'].errors" class="">
+              <div *ngIf="f['motdepasse'].errors['required']">Password is required</div>
+              <div *ngIf="f['motdepasse'].errors['minlength']">
+                Password must be at least 6 characters
+              </div>
+            </div>
+
             <div class="form-group input-group">
-              <input class="form-control" placeholder="Retaper le mot de passe" type="password">
-            </div> <!-- form-group// -->
+              <input formControlName="motdepasse2" (ngModelChange)=onReset()  class="form-control" placeholder="Retaper le mot de passe" type="password" [ngClass]="{ 'is-invalid': submitted && f['motdepasse2'].errors }">
+            </div>
+            <div *ngIf="submitted && f['motdepasse2'].errors" class="">
+              <div *ngIf="f['motdepasse2'].errors['required']">
+                Confirm Password is required
+              </div>
+              <div *ngIf="f['motdepasse2'].errors['matching']">
+                Confirm Password does not match
+              </div>
+            </div>
             <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-block" (click)="saveUser()"> Créer un compte  </button>
+              <button type="submit" class="btn btn-primary btn-block"> Créer un compte  </button>
             </div> <!-- form-group// -->
             <p class="text-center">Vous avez un compte ? <a routerLink="/login">Connectez-vous</a> </p>
-          </div>
+          </form>
           <div *ngIf="submitted" class="text-center">
             <p>Votre inscription a bien été enregistré et un mail a été envoyé à l'adresse <b>{{ user.email}}</b></p>
             <a class="" routerLink="/login">Retour</a>
