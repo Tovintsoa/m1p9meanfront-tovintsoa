@@ -10,5 +10,6 @@ export class Restaurant {
   description?: string;
   url_image?:string;
   motdepasse?:string;
+  plat?:Array<Object>
 
 }

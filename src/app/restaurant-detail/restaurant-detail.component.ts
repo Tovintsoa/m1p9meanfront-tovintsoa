@@ -21,6 +21,8 @@ export class RestaurantDetailComponent implements OnInit {
   getListePlat(idRestaurant:string){
     this.platService.getAllById(idRestaurant).subscribe({
       next:(data) =>{
+        console.log('aaa');
+        console.log(data);
         this.plat = data;
       },
       error:(e) => console.error(e)
