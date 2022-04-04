@@ -7,36 +7,40 @@
           <h4 class="card-title mt-3 text-center">Créer un compte</h4>
           <p class="text-center">Get started with your free account</p>
 
-          <form (ngSubmit)="saveUser()" [formGroup]="form" *ngIf="!submitted || form.invalid" >
+          <div class="alert alert-danger"  *ngIf="error" >
+            {{error}}
+          </div>
+          <form (ngSubmit)="saveUser()" [formGroup]="form" *ngIf="!submitted || form.invalid || error" >
+
             <div class="form-group input-group">
-              <input formControlName="nom" class="form-control" (ngModelChange)=onReset() placeholder="Nom" type="text" [(ngModel)]="user.nom" [ngClass]="{ 'is-invalid': submitted && f['nom'].errors }">
+              <input formControlName="nom" class="form-control" (focus)=onReset() placeholder="Nom" type="text" [(ngModel)]="user.nom" [ngClass]="{ 'is-invalid': submitted && f['nom'].errors }">
             </div>
 
             <div *ngIf="submitted && f['nom'].errors" class="" >
               <div *ngIf="f['nom'].errors['required']">Nom is required</div>
             </div>
             <div class="form-group input-group">
-              <input formControlName="prenom" (ngModelChange)=onReset() class="form-control" placeholder="Prénom" type="text" [(ngModel)]="user.prenom"   [ngClass]="{ 'is-invalid': submitted && f['prenom'].errors }">
+              <input formControlName="prenom" (focus)=onReset() class="form-control" placeholder="Prénom" type="text" [(ngModel)]="user.prenom"   [ngClass]="{ 'is-invalid': submitted && f['prenom'].errors }">
             </div>
             <div *ngIf="submitted && f['prenom'].errors" class="">
               <div *ngIf="f['prenom'].errors['required']">prenom is required</div>
             </div>
             <div class="form-group input-group">
-              <input formControlName="email" (ngModelChange)=onReset() class="form-control" placeholder="Email" type="email" [(ngModel)]="user.email" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
+              <input formControlName="email" (focus)=onReset() class="form-control" placeholder="Email" type="email" [(ngModel)]="user.email" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
             </div>
             <div *ngIf="submitted && f['email'].errors" class="">
               <div *ngIf="f['email'].errors['required']">Email is required</div>
               <div *ngIf="f['email'].errors['email']">Email is invalid</div>
             </div>
             <div class="form-group input-group">
-              <select formControlName="role" class="form-control" (ngModelChange)=onReset() [(ngModel)]="user.role">
-                <option value="ROLE_USER">Client</option>
+              <select formControlName="role" class="form-control" (focus)=onReset() [(ngModel)]="user.role">
+                <option value="ROLE_USER" selected="selected">Client</option>
                 <option value="ROLE_RESTAURANT">Restaurant</option>
                 <option value="ROLE_LIVREUR">Livreur</option>
               </select>
             </div> <!-- form-group end.// -->
             <div class="form-group input-group">
-              <input formControlName="motdepasse"  (ngModelChange)=onReset() class="form-control"  placeholder="Votre mot de passe" type="password" [(ngModel)]="user.motdepasse" [ngClass]="{ 'is-invalid': submitted && f['motdepasse'].errors }">
+              <input formControlName="motdepasse"  (focus)=onReset() class="form-control"  placeholder="Votre mot de passe" type="password" [(ngModel)]="user.motdepasse" [ngClass]="{ 'is-invalid': submitted && f['motdepasse'].errors }">
             </div>
             <div *ngIf="submitted && f['motdepasse'].errors" class="">
               <div *ngIf="f['motdepasse'].errors['required']">Password is required</div>
@@ -46,7 +50,7 @@
             </div>
 
             <div class="form-group input-group">
-              <input formControlName="motdepasse2" (ngModelChange)=onReset()  class="form-control" placeholder="Retaper le mot de passe" type="password" [ngClass]="{ 'is-invalid': submitted && f['motdepasse2'].errors }">
+              <input formControlName="motdepasse2" (focus)=onReset()  class="form-control" placeholder="Retaper le mot de passe" type="password" [ngClass]="{ 'is-invalid': submitted && f['motdepasse2'].errors }">
             </div>
             <div *ngIf="submitted && f['motdepasse2'].errors" class="">
               <div *ngIf="f['motdepasse2'].errors['required']">
@@ -61,7 +65,7 @@
             </div> <!-- form-group// -->
             <p class="text-center">Vous avez un compte ? <a routerLink="/login">Connectez-vous</a> </p>
           </form>
-          <div *ngIf="submitted" class="text-center">
+          <div *ngIf="!error && submitted  " class="text-center">
             <p>Votre inscription a bien été enregistré et un mail a été envoyé à l'adresse <b>{{ user.email}}</b></p>
             <a class="" routerLink="/login">Retour</a>
           </div>

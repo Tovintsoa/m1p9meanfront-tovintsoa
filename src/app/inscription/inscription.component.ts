@@ -27,6 +27,7 @@ export class InscriptionComponent implements OnInit {
     url_image:'',
   };
   submitted = false;
+  error = "";
   constructor(private  userService:UserService,private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -75,15 +76,19 @@ export class InscriptionComponent implements OnInit {
     };
     this.userService.create(data).subscribe(
       response => {
+
         console.log(response);
 
       },
       error => {
-        console.log(error);
+        console.log(error.error.errors[0].msg);
+        this.error = error.error.errors[0].msg;
       });
   }
   onReset(): void {
     this.submitted = false;
+    this.error = '';
 
   }
+
 }

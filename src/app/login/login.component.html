@@ -3,7 +3,9 @@
 
     <div class="form-signin"  *ngIf="!isLoggedIn">
       <h1 class="h3 mb-5 font-weight-normal" style="text-align: center"> Connectez - vous</h1>
-
+      <div class="alert alert-danger" *ngIf="errorMessage">
+        {{errorMessage}}
+      </div>
       <input type="email" id="inputEmail" class="form-control mb-4" placeholder="Email address" required="" autofocus="" [(ngModel)]="form.email">
       <input type="password" id="inputPassword" class="form-control mb-4" placeholder="Password" required="" [(ngModel)]="form.password">
 
