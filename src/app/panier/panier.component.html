@@ -1,0 +1,24 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Plat</th>
+            <th scope="col">Restaurant</th>
+            <th scope="col">Quantite</th>
+            <th scope="col">Net à payer</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="panierListe">
+          <tr   *ngFor="let e of panierListe;" >
+            <th scope="row">{{e.plat.nom}}</th>
+            <td>{{e.restaurant.nom}}</td>
+            <td>{{e.quantite}}</td>
+            <td>{{e.netPayer}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

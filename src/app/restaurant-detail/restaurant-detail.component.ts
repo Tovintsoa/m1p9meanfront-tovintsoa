@@ -3,6 +3,8 @@ import {PlatService} from "../service/plat.service";
 import {Restaurant} from "../model/restaurant.model";
 import {Plat} from "../model/plat.model";
 import {ActivatedRoute, Router} from "@angular/router";
+import {PanierService} from "../service/panier.service";
+import {TokenStorageService} from "../service/token-storage.service";
 
 @Component({
   selector: 'app-restaurant-detail',
@@ -10,9 +12,12 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./restaurant-detail.component.css']
 })
 export class RestaurantDetailComponent implements OnInit {
-  plat!: Plat[];
+  platL!: Plat[];
+  taille = 0;
+  error = "";
+
   restaurant: Restaurant = new Restaurant();
-  constructor(private platService : PlatService,  private route: ActivatedRoute, private router: Router) { }
+  constructor(private platService : PlatService,  private route: ActivatedRoute, private router: Router,private panierService:PanierService,private tokenStorage: TokenStorageService) { }
 
   ngOnInit(): void {
     this.getListePlat(this.route.snapshot.params["id"]);
@@ -21,9 +26,9 @@ export class RestaurantDetailComponent implements OnInit {
   getListePlat(idRestaurant:string){
     this.platService.getAllById(idRestaurant).subscribe({
       next:(data) =>{
-        console.log('aaa');
-        console.log(data);
-        this.plat = data;
+
+        this.platL = data;
+        this.taille = this.platL.length
       },
       error:(e) => console.error(e)
     })
@@ -37,6 +42,24 @@ export class RestaurantDetailComponent implements OnInit {
       error:(e) => console.error(e)
     })
   }
+  ajouterPanier(){
 
+    const data = {
+      quantite : 1,
+      plat: {},
+      netPayer:1000,
+      restaurant:{},
+      utilisateur: this.tokenStorage.getUser().id
+    };
+    this.panierService.ajouterPanier(data).subscribe(
+      response => {
 
+        console.log(response);
+
+      },
+      error => {
+        console.log(error.error.errors[0].msg);
+        this.error = error.error.errors[0].msg;
+      });
+  }
 }

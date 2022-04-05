@@ -12,12 +12,14 @@ import { LoginComponent } from './login/login.component';
 import { authInterceptorProviders  } from './_helpers/auth.interceptor';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { PanierComponent } from './panier/panier.component';
 const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
   { path: 'index', component:DashboardComponent},
   { path: 'restaurant/:id', component: RestaurantDetailComponent },
   { path: 'login', component: LoginComponent },
   { path: 'inscription', component: InscriptionComponent },
+  { path: 'panier', component: PanierComponent },
 
 ];
 @NgModule({
@@ -28,7 +30,8 @@ const routes: Routes = [
     FooterComponent,
     RestaurantDetailComponent,
     LoginComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    PanierComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
