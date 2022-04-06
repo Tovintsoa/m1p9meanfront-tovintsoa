@@ -8,14 +8,16 @@
             <th scope="col">Restaurant</th>
             <th scope="col">Quantite</th>
             <th scope="col">Net à payer</th>
+            <th></th>
           </tr>
         </thead>
         <tbody *ngIf="panierListe">
           <tr   *ngFor="let e of panierListe;" >
             <th scope="row">{{e.plat.nom}}</th>
             <td>{{e.restaurant.nom}}</td>
-            <td>{{e.quantite}}</td>
+            <td class="text-center"><input type="text" class="form-control form quantite" value="{{e.quantite}}"> </td>
             <td>{{e.netPayer}}</td>
+            <td><button class="btn btn-danger"><i class="bi bi-trash3"></i></button></td>
           </tr>
         </tbody>
       </table>

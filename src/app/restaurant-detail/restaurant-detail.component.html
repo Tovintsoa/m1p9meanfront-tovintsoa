@@ -16,7 +16,7 @@
           <h5 class="card-title">{{ e.nom }}</h5>
           <p class="card-text">{{e.description}}</p>
           <p>{{e.prix}} ar</p>
-          <a (click) = "ajouterPanier()" class="btn btn-primary">Ajouter au panier</a>
+          <a (click) = "ajouterPanier(restaurant,e)" class="btn btn-primary">Ajouter au panier</a>
         </div>
       </div>
     </div>

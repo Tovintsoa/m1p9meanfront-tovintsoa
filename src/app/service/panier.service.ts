@@ -18,6 +18,6 @@ export class PanierService {
       return this.http.get<Panier>(baseUrl + '/api/panier/' + idUser);
   }
   ajouterPanier(data: any): Observable<any>{
-    return this.http.post(baseUrl+"/ajouterPanier", data)
+    return this.http.post(baseUrl+"/api/ajouterPanier", data)
   }
 }

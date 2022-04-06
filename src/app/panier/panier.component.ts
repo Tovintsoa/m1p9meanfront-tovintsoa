@@ -19,7 +19,6 @@ export class PanierComponent implements OnInit {
     else {
       this.panierListe = panierService.getListePanier(tokenStorage.getUser().id).subscribe({
         next: (data) => {
-
           this.panierListe = data;
           console.log(data);
           /*this.panier = data;*/

@@ -42,19 +42,19 @@ export class RestaurantDetailComponent implements OnInit {
       error:(e) => console.error(e)
     })
   }
-  ajouterPanier(){
-
+  ajouterPanier(idRestaurant:object,plat:object){
+    console.log(idRestaurant);
     const data = {
       quantite : 1,
-      plat: {},
+      plat: plat,
       netPayer:1000,
-      restaurant:{},
+      restaurant:idRestaurant,
       utilisateur: this.tokenStorage.getUser().id
     };
     this.panierService.ajouterPanier(data).subscribe(
       response => {
-
-        console.log(response);
+        window.location.reload();
+        //this.reloadPage()
 
       },
       error => {
