@@ -1,11 +1,13 @@
 <div class="container my-5">
-  <div class="row" *ngIf="taille > 0">
+  <div class="row">
     <div class="col-12 mb-3">
       <a routerLink="/index"> <i class="bi bi-arrow-left"></i> Retour </a>
     </div>
     <div class="col-12 mb-3">
       <h4>Menu chez:   {{restaurant.nom}}</h4>
     </div>
+  </div>
+  <div class="row" *ngIf="taille > 0">
     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12"   *ngFor="let e of platL;"  >
       <div class="card my-4" style="">
         <img class="card-img-top"  src="https://via.placeholder.com/150" alt="Card image cap">

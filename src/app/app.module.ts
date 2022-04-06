@@ -13,6 +13,7 @@ import { authInterceptorProviders  } from './_helpers/auth.interceptor';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { PanierComponent } from './panier/panier.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
   { path: 'index', component:DashboardComponent},
@@ -39,7 +40,8 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     NgxSpinnerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

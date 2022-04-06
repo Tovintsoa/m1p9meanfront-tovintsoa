@@ -1,14 +1,16 @@
+// @ts-ignore
 import { Component, OnInit } from '@angular/core';
 import {TokenStorageService} from "../service/token-storage.service";
-import {Restaurant} from "../model/restaurant.model";
 import {PanierService} from "../service/panier.service";
 
+// @ts-ignore
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  public isMenuCollapsed = true;
   isLoggedIn = false;
   user ;
   panier : any ;
