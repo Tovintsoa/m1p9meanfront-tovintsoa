@@ -8,8 +8,8 @@
     </div>
     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12"   *ngFor="let e of platL;"  >
       <div class="card my-4" style="">
-        <img class="card-img-top" *ngIf="!e.url_image || e.url_image === ''" src="https://via.placeholder.com/150" alt="Card image cap">
-        <img class="card-img-top" *ngElse src="{{e.url_image}}" alt="Card image cap">
+        <img class="card-img-top"  src="https://via.placeholder.com/150" alt="Card image cap">
+        <!--<img class="card-img-top" *ngElse src="{{e.url_image}}" alt="Card image cap">-->
         <div class="card-body">
           <h5 class="card-title">{{ e.nom }}</h5>
           <p class="card-text">{{e.description}}</p>
