@@ -14,6 +14,7 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { PanierComponent } from './panier/panier.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgHttpLoaderModule} from "ng-http-loader";
 const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
   { path: 'index', component:DashboardComponent},
@@ -41,7 +42,8 @@ const routes: Routes = [
     FormsModule,
     NgxSpinnerModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    NgHttpLoaderModule.forRoot(),
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
