@@ -11,16 +11,27 @@
             <th></th>
           </tr>
         </thead>
-        <tbody *ngIf="panierListe">
+        <tbody *ngIf="panierListe" >
           <tr   *ngFor="let e of panierListe;" >
-            <th scope="row">{{e.plat.nom}}</th>
+
+
+            <td >{{e.plat.nom}}</td>
             <td>{{e.restaurant.nom}}</td>
-            <td class="text-center"><input type="text" class="form-control form quantite" value="{{e.quantite}}"> </td>
-            <td>{{e.netPayer}}</td>
-            <td><button class="btn btn-danger"><i class="bi bi-trash3"></i></button></td>
+            <td class="text-center"><input type="text" class="form-control form quantite" (change)="changeQuantite(e._id,$event)"  value="{{e.quantite}}"> </td>
+            <td >{{e.plat.prix * e.quantite | number:'3.'  }} ar</td>
+            <td><button class="btn btn-danger" (click) = "effacerPanier(e._id)"><i class="bi bi-trash3"></i></button></td>
+          </tr>
+          <tr *ngIf="panierListe.length > 0">
+              <td></td>
+              <td></td>
+              <td><b>Total:</b></td>
+            <td colspan="9"><b>{{total  | number:'3.'}} ar</b></td>
           </tr>
         </tbody>
       </table>
+      <div class="col-12 text-right">
+        <button class="btn btn-primary" *ngIf="panierListe.length > 0">Valider la commande</button>
+      </div>
     </div>
   </div>
 </div>
