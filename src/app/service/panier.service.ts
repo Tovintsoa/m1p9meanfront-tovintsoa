@@ -3,7 +3,7 @@ import {Restaurant} from "../model/restaurant.model";
 import {HttpClient} from "@angular/common/http";
 import {Panier} from "../model/panier.model";
 import {Observable} from "rxjs";
-const baseUrl = 'http://localhost:8080';
+const baseUrl = 'https://m1p9mean-tovintsoa.herokuapp.com/';
 @Injectable({
   providedIn: 'root'
 })
