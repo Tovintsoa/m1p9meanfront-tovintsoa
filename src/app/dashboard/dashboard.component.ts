@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 })
 export class DashboardComponent implements OnInit{
   restaurant!: Restaurant[];
-  private url = "https://m1p9mean-tovintsoa.herokuapp.com/";
+  private url = environment.apiUrl;
   constructor(private restaurantService : RestaurantService){
     console.log(environment.apiUrl);
   }
