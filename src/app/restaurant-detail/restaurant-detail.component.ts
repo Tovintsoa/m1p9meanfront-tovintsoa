@@ -26,7 +26,7 @@ export class RestaurantDetailComponent implements OnInit {
   getListePlat(idRestaurant:string){
     this.platService.getAllById(idRestaurant).subscribe({
       next:(data) =>{
-        console.log(data);
+
         this.platL = data;
         this.taille = this.platL.length
       },

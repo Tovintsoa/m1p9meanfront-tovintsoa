@@ -27,4 +27,7 @@ export class PanierService {
   changeQuantite(idPanier:string,qte:number,idUser: string){
     return this.http.get(baseUrl+"/api/panier/changeQuantite/"+idPanier+"/"+qte+"/"+idUser);
   }
+  validerPanier(panier:any){
+    return this.http.post(baseUrl+'/api/validerPanier',panier);
+  }
 }

@@ -61,4 +61,16 @@ export class PanierComponent implements OnInit {
       this.total+= temp;
     }
   }
+  validerPanier(){
+    let idUser = this.tokenStorage.getUser().id;
+    this.panierService.validerPanier(this.panierListe).subscribe({
+      next: (data) => {
+        this.panierListe = data;
+        this.calculTotal();
+      },
+      error: (e) => console.error(e)
+    });
+    /*console.log(this.panierListe);
+    console.log(idUser);*/
+  }
 }

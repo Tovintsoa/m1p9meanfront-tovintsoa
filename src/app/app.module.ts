@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -15,6 +15,11 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { PanierComponent } from './panier/panier.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {NgHttpLoaderModule} from "ng-http-loader";
+import { CommandeComponent } from './commande/commande.component';
+import localeFr from '@angular/common/locales/fr';
+import {registerLocaleData} from "@angular/common";
+registerLocaleData(localeFr);
+
 const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
   { path: 'index', component:DashboardComponent},
@@ -22,6 +27,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'inscription', component: InscriptionComponent },
   { path: 'panier', component: PanierComponent },
+  { path: 'commande', component: CommandeComponent},
 
 ];
 @NgModule({
@@ -33,7 +39,8 @@ const routes: Routes = [
     RestaurantDetailComponent,
     LoginComponent,
     InscriptionComponent,
-    PanierComponent
+    PanierComponent,
+    CommandeComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -45,7 +52,7 @@ const routes: Routes = [
     NgbModule,
     NgHttpLoaderModule.forRoot(),
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders,{ provide: LOCALE_ID, useValue: 'fr-FR' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

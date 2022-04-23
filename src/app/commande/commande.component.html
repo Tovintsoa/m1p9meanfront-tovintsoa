@@ -1,0 +1,49 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12">
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">Plat</th>
+          <th scope="col">Restaurant</th>
+          <th scope="col">Quantite</th>
+          <th scope="col">Net à payer</th>
+          <th scope="col"> Status </th>
+          <th scope="col"> Date de la commande </th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody *ngIf="commandeListe" >
+        <tr   *ngFor="let e of commandeListe;" >
+          <td>{{e.plat.nom}}</td>
+          <td>{{e.restaurant.nom}}</td>
+          <td class="text-center">{{e.quantite}}</td>
+          <td>{{e.plat.prix * e.quantite | number:'3.'  }} ar</td>
+          <td>
+            <span *ngIf="e.status == 'commande_send'" class="badge badge-secondary">
+              En attente de preparation
+            </span>
+            <span *ngIf="e.status == 'commande_prepare'" class="badge badge-primary">
+               En cours de preparation
+            </span>
+            <span *ngIf="e.status == 'commande_envoye'" class="badge badge-info">
+               En cours de livraison
+            </span>
+            <span *ngIf="e.status == 'commande_done'" class="badge badge-success">
+               Livré
+            </span>
+          </td>
+          <td>{{e.dateCommande | date: 'medium' }}</td>
+        </tr>
+        <tr *ngIf="commandeListe.length > 0">
+          <td></td>
+          <td></td>
+          <td><b>Total:</b></td>
+          <td colspan="9"><b>{{total  | number:'3.'}} ar</b></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
