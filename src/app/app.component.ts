@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {NgxSpinnerService} from "ngx-spinner";
-
+import {Router} from "@angular/router";
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,9 +9,13 @@ import {NgxSpinnerService} from "ngx-spinner";
 })
 export class AppComponent {
   typeSelected: string;
-
-  constructor(private spinnerService: NgxSpinnerService) {
+  showHideBackend !: boolean;
+  constructor(private spinnerService: NgxSpinnerService,private location: Location) {
     this.typeSelected = 'ball-fussion';
+    this.showHideBackend = false;
+    if(location.path().includes('admin')){
+      this.showHideBackend = true;
+    }
   }
 
 

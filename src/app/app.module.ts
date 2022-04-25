@@ -18,6 +18,8 @@ import {NgHttpLoaderModule} from "ng-http-loader";
 import { CommandeComponent } from './commande/commande.component';
 import localeFr from '@angular/common/locales/fr';
 import {registerLocaleData} from "@angular/common";
+import {BackofficeModule} from "./backoffice/backoffice.module";
+
 registerLocaleData(localeFr);
 
 const routes: Routes = [
@@ -51,6 +53,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     NgbModule,
     NgHttpLoaderModule.forRoot(),
+    BackofficeModule
   ],
   providers: [authInterceptorProviders,{ provide: LOCALE_ID, useValue: 'fr-FR' }],
   bootstrap: [AppComponent]
