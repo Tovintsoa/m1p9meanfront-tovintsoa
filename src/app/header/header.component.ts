@@ -40,15 +40,20 @@ export class HeaderComponent implements OnInit {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
     }
-    this.panier = this.panierService.getNombrePanier(this.user.id).subscribe({
-      next: (data) => {
+    if(null === this.tokenStorage.getToken()){
+      this.panier = 0;
+    }
+    else {
+      this.panier = this.panierService.getNombrePanier(this.user.id).subscribe({
+        next: (data) => {
 
 
-        this.initBadgePanier(data);
-        /!*this.panier = data;*!/
-      },
-      error: (e) => console.error(e)
-    });
+          this.initBadgePanier(data);
+          /!*this.panier = data;*!/
+        },
+        error: (e) => console.error(e)
+      });
+    }
 
     this.panierService.isPanierObserver().subscribe((panier:Number) => {
       this.initBadgePanier(panier)

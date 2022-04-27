@@ -39,14 +39,14 @@ export class PanierService {
   setPanier(tokenStorage : TokenStorageService){
     let user = tokenStorage.getUser().id;
     var panier;
-    this.getNombrePanier(user).subscribe({
-      next: (data) => {
-        panier = data;
-        this.panierObserver.next(panier);
-      },
-      error: (e) => console.error(e)
-    });
-
-
+    if(tokenStorage.getToken() !== null) {
+      this.getNombrePanier(user).subscribe({
+        next: (data) => {
+          panier = data;
+          this.panierObserver.next(panier);
+        },
+        error: (e) => console.error(e)
+      });
+    }
   }
 }
