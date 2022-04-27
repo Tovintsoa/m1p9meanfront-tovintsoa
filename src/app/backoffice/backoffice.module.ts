@@ -12,6 +12,8 @@ import { ConnexionComponent } from './connexion/connexion.component';
 import { HeaderBackComponent } from './header-back/header-back.component';
 import {AppComponent} from "../app.component";
 import { NavbarLeftComponent } from './navbar-left/navbar-left.component';
+import { DashboardBackofficeComponent } from './dashboard-backoffice/dashboard-backoffice.component';
+
 
 const routes: Routes = [
   { path: 'admin/connexion', component:ConnexionComponent},
@@ -21,7 +23,9 @@ const routes: Routes = [
   declarations: [
     ConnexionComponent,
     HeaderBackComponent,
-    NavbarLeftComponent
+    NavbarLeftComponent,
+    DashboardBackofficeComponent,
+
   ],
   imports: [
     RouterModule.forRoot(routes),
