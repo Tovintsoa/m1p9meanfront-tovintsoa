@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
   constructor( private tokenStorage: TokenStorageService,private panierService:PanierService) {
     this.user = tokenStorage.getUser();
 
-    if(null === this.tokenStorage.getToken()) {
+    /*if(null === this.tokenStorage.getToken()) {
       this.panier = 0;
     }
     else{
@@ -27,20 +27,32 @@ export class HeaderComponent implements OnInit {
 
           this.panier = data;
 
-          /*this.panier = data;*/
+          /!*this.panier = data;*!/
         },
         error: (e) => console.error(e)
       })
-    }
+    }*/
 
 
   }
 
   ngOnInit(): void {
-
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
     }
+    this.panier = this.panierService.getNombrePanier(this.user.id).subscribe({
+      next: (data) => {
+
+
+        this.initBadgePanier(data);
+        /!*this.panier = data;*!/
+      },
+      error: (e) => console.error(e)
+    });
+
+    this.panierService.isPanierObserver().subscribe((panier:Number) => {
+      this.initBadgePanier(panier)
+    });
   }
   logout():void{
     this.tokenStorage.signOut();
@@ -48,5 +60,10 @@ export class HeaderComponent implements OnInit {
   }
   reloadPage(): void {
     window.location.reload();
+  }
+  initBadgePanier(panier:Number){
+
+    this.panier = panier;
+
   }
 }

@@ -53,9 +53,7 @@ export class RestaurantDetailComponent implements OnInit {
     };
     this.panierService.ajouterPanier(data).subscribe(
       response => {
-        window.location.reload();
-        //this.reloadPage()
-
+        this.panierService.setPanier(this.tokenStorage);
       },
       error => {
         console.log(error.error.errors[0].msg);

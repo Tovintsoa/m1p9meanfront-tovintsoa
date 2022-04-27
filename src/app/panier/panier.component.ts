@@ -36,6 +36,7 @@ export class PanierComponent implements OnInit {
       this.panierListe = this.panierService.effacerPanier(idPanier,idUser).subscribe({
         next: (data) => {
           this.panierListe = data;
+          this.panierService.setPanier(this.tokenStorage);
           this.calculTotal();
         },
         error: (e) => console.error(e)
@@ -73,4 +74,5 @@ export class PanierComponent implements OnInit {
     /*console.log(this.panierListe);
     console.log(idUser);*/
   }
+
 }
