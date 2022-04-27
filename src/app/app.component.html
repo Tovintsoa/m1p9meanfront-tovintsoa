@@ -6,6 +6,14 @@
 </div>
 <div *ngIf="showHideBackend">
   <app-header-back></app-header-back>
+  <div class="container-fluid">
+    <div class="row">
+      <app-navbar-left></app-navbar-left>
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" style="height: 100vh">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+  </div>
   <app-footer></app-footer>
 </div>
 

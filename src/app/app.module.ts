@@ -19,6 +19,7 @@ import { CommandeComponent } from './commande/commande.component';
 import localeFr from '@angular/common/locales/fr';
 import {registerLocaleData} from "@angular/common";
 import {BackofficeModule} from "./backoffice/backoffice.module";
+import {NavbarLeftComponent} from "./backoffice/navbar-left/navbar-left.component";
 
 registerLocaleData(localeFr);
 
@@ -42,7 +43,7 @@ const routes: Routes = [
     LoginComponent,
     InscriptionComponent,
     PanierComponent,
-    CommandeComponent
+    CommandeComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),

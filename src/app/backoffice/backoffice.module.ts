@@ -11,6 +11,7 @@ import { ConnexionComponent } from './connexion/connexion.component';
 
 import { HeaderBackComponent } from './header-back/header-back.component';
 import {AppComponent} from "../app.component";
+import { NavbarLeftComponent } from './navbar-left/navbar-left.component';
 
 const routes: Routes = [
   { path: 'admin/connexion', component:ConnexionComponent},
@@ -19,14 +20,16 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     ConnexionComponent,
-    HeaderBackComponent
+    HeaderBackComponent,
+    NavbarLeftComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
     CommonModule
   ],
   exports: [
-    HeaderBackComponent
+    HeaderBackComponent,
+    NavbarLeftComponent
   ]
 })
 export class BackofficeModule { }
