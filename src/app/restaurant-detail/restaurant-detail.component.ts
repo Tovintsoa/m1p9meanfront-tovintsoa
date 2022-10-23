@@ -5,6 +5,7 @@ import {Plat} from "../model/plat.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PanierService} from "../service/panier.service";
 import {TokenStorageService} from "../service/token-storage.service";
+import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-restaurant-detail',
@@ -15,11 +16,16 @@ export class RestaurantDetailComponent implements OnInit {
   platL!: Plat[];
   taille = 0;
   error = "";
+  isLoggedIn = false;
+  closeResult = '';
 
   restaurant: Restaurant = new Restaurant();
-  constructor(private platService : PlatService,  private route: ActivatedRoute, private router: Router,private panierService:PanierService,private tokenStorage: TokenStorageService) { }
+  constructor(private modalService: NgbModal,private platService : PlatService,  private route: ActivatedRoute, private router: Router,private panierService:PanierService,private tokenStorage: TokenStorageService) { }
 
   ngOnInit(): void {
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+    }
     this.getListePlat(this.route.snapshot.params["id"]);
     this.getRestaurant(this.route.snapshot.params["id"]);
   }
@@ -60,4 +66,25 @@ export class RestaurantDetailComponent implements OnInit {
         this.error = error.error.errors[0].msg;
       });
   }
+  open(content: any) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+      (result) => {
+        this.closeResult = `Closed with: ${result}`;
+      },
+      (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      },
+    );
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
 }

@@ -16,7 +16,12 @@
           <h5 class="card-title">{{ e.nom }}</h5>
           <p class="card-text">{{e.description}}</p>
           <p>{{e.prix}} ar</p>
-          <a (click) = "ajouterPanier(restaurant,e)" class="btn btn-primary">Ajouter au panier</a>
+          <span class="" *ngIf="isLoggedIn">
+            <a (click) = "ajouterPanier(restaurant,e)" class="btn btn-primary">Ajouter au panier</a>
+          </span>
+          <span class="" *ngIf="!isLoggedIn">
+             <a  class="btn btn-primary" (click)="open(content)" >Ajouter au panier</a>
+          </span>
         </div>
       </div>
     </div>
@@ -29,4 +34,17 @@
     </div>
   </div>
 </div>
+<ng-template #content let-modal style="z-index: 1030;">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Connexion requise</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"> X </button>
+  </div>
+  <div class="modal-body">
+     <a class="nav-link" routerLink="/login" (click)="modal.close('Save click')">Connectez-vous ici</a>
+     <a class="nav-link" routerLink="/inscription" (click)="modal.close('Save click')"> Créer un compte</a>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Fermer</button>
+  </div>
+</ng-template>
 

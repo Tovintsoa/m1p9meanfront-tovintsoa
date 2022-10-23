@@ -1,3 +1,6 @@
 .container{
   min-height: 80vh;
 }
+::ng-deep.modal-backdrop{
+  z-index: 1038 !important;
+}
